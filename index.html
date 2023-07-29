@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Inscripción</title>
+</head>
+<body>
+    <h2>Datos Generales</h2>
+    <form id="formulario" onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required><br>
+
+        <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="fechaNacimiento" required><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" required><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" required><br>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" required>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+        </select><br>
+
+        <h2>Datos de Pago con Tarjeta</h2>
+        <label for="nombreTarjeta">Nombre en la Tarjeta:</label>
+        <input type="text" id="nombreTarjeta" required><br>
+
+        <label for="numeroTarjeta">Número de Tarjeta:</label>
+        <input type="text" id="numeroTarjeta" required><br>
+
+        <label for="fechaVencimiento">Fecha de Vencimiento:</label>
+        <input type="month" id="fechaVencimiento" required><br>
+
+        <label for="codigoSeguridad">Código de Seguridad:</label>
+        <input type="text" id="codigoSeguridad" required><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        function validarFormulario() {
+            // Validar datos generales
+            var nombre = document.getElementById('nombre').value;
+            var fechaNacimiento = document.getElementById('fechaNacimiento').value;
+            var direccion = document.getElementById('direccion').value;
+            var telefono = document.getElementById('telefono').value;
+            var sexo = document.getElementById('sexo').value;
+
+            if (!nombre || !fechaNacimiento || !direccion || !telefono || !sexo) {
+                alert("Por favor, complete todos los campos de datos generales.");
+                return false;
+            }
+
+            // Validar datos de tarjeta
+            var nombreTarjeta = document.getElementById('nombreTarjeta').value;
+            var numeroTarjeta = document.getElementById('numeroTarjeta').value;
+            var fechaVencimiento = document.getElementById('fechaVencimiento').value;
+            var codigoSeguridad = document.getElementById('codigoSeguridad').value;
+
+            if (!nombreTarjeta || !numeroTarjeta || !fechaVencimiento || !codigoSeguridad) {
+                alert("Por favor, complete todos los campos de datos de pago con tarjeta.");
+                return false;
+            }
+
+            // Validar el número de tarjeta (ejemplo: 16 dígitos)
+            if (numeroTarjeta.length !== 16 || isNaN(numeroTarjeta)) {
+                alert("El número de tarjeta debe contener exactamente 16 dígitos numéricos.");
+                return false;
+            }
+
+            // Agregar más validaciones si es necesario...
+
+            // Si todos los datos son válidos, el formulario se enviará
+            alert("Formulario enviado exitosamente.");
+            return true;
+        }
+    </script>
+</body>
+</html>
